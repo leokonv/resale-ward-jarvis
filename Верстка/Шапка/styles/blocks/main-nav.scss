@@ -1,0 +1,124 @@
+// ============ Горизонтальное меню (десктоп) ============
+
+.main-nav__list {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 100%;
+}
+
+.main-nav__link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 18px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: $color-title;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+// ============ Панель мобильного меню ============
+// Отдельный блок: живёт всегда в разметке, но скрыт до ≤767px и до клика по бургеру.
+// Модификатор --opened на блоке добавляет JS (клик по .main-header__burger,
+// Escape, клик по ссылке/вне панели — по аналогии с v1). Панель — НЕ дубль
+// десктоп-меню: у неё своё содержимое (табы аудиторий + разделы + «Продать товар»),
+// поэтому вторая разметка здесь оправдана.
+
+.main-nav--mobile {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  left: 0;
+  z-index: 90;
+  display: none;
+  max-height: calc(100vh - 64px);
+  padding: 16px 20px 24px;
+  overflow-y: auto;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-border;
+}
+
+// JS вешает --opened на блок — панель появляется.
+.main-nav--mobile.main-nav--opened {
+  display: block;
+}
+
+.main-nav--mobile__audience-caption {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: $color-description;
+}
+
+.main-nav--mobile__tabs {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $color-border;
+}
+
+.main-nav--mobile__tab-link {
+  display: inline-block;
+  padding: 4px 0;
+  font-size: 14px;
+  color: $color-description;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+// Активный таб аудитории: тёмный текст с нижней линией.
+.main-nav--mobile__tab-link--active {
+  color: $color-title;
+  box-shadow: inset 0 -2px 0 $color-title;
+}
+
+.main-nav--mobile__list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 16px;
+}
+
+.main-nav--mobile__link {
+  display: block;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: $color-title;
+  border-bottom: 1px solid $color-border;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.main-nav--mobile__sell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-title;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+// Мобильная панель имеет смысл только там, где есть бургер (≤767px);
+// на десктопе подстрахуемся от случайного показа.
+@media (min-width: $tablet-width) {
+  .main-nav--mobile {
+    display: none;
+  }
+}

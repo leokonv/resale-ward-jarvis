@@ -1,0 +1,24 @@
+// ============ Токены макета Resale Ward ============
+
+// Цвета
+$color-title: #474442;        // основной тёмный (текст, иконки)
+$color-ink: #191716;          // почти чёрный (акценты)
+$color-description: #474342;  // основной текст
+$color-white: #ffffff;
+$color-border: #e0deda;       // все обводки
+$color-special-grey: #f7f3ef;// бежевая подложка (панель навигации на hero)
+$color-dark-overlay: rgb(247 243 239 / 10%); // матовое стекло поверх hero
+
+// Типографика
+$font-primary: "GTWalsheimPro", "Arial", sans-serif;
+$font-secondary: "Forum", "Georgia", serif;
+
+// Брейкпоинты (мобильная шапка — до 767px включительно; с 768px — десктопная.
+// Если по стайлгайду мобильное меню нужно ТОЛЬКО на 375px — поменяй $mobile-only на 375px.)
+$mobile-only: 767px;
+$tablet-width: 768px;
+
+// Контент
+$content-width: 1183px;
+
+$transition: 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);

@@ -1,0 +1,7 @@
+// ============ Resale Ward v2 — шапка ============
+// Порядок импортов важен: сначала переменные и миксины, потом всё остальное.
+
+@import "./common/variables.scss";
+@import "./common/global.scss";
+@import "./blocks/main-header.scss";
+@import "./blocks/main-nav.scss";

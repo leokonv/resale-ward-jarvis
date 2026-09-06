@@ -1,0 +1,243 @@
+// ============ Шапка: ОДНА разметка, две раскладки через grid-areas ============
+// Фишка: логотип, поиск и корзина существуют в разметке в единственном экземпляре.
+// На мобильной шапке все элементы стоят в одну строку, на десктопе «переезжают»
+// по строкам/колонкам сетки — за это отвечает grid-template-areas в медиа-запросе.
+// Менять порядок через order во flex здесь нельзя: элементы меняют СТРОКУ.
+
+.main-header {
+  position: relative;
+  z-index: 100;
+}
+
+// ---------- Единая сетка шапки ----------
+// Мобильная раскладка (базовая, без медиа-запроса): одна строка 60px:
+//   [поиск] [логотип] [корзина+бургер]
+// usernav, «Продать товар» и горизонтальное меню на мобильной скрыты —
+// их содержимое перенесено в панель .main-nav--mobile.
+
+.main-header__container {
+  display: grid;
+  grid-template-areas:
+    "search logo actions";
+  grid-template-columns: auto 1fr auto;
+  grid-auto-rows: 64px;
+  gap: 12px;
+  align-items: center;
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-header__logo {
+  display: flex;
+  grid-area: logo;
+  justify-self: center;
+  align-items: center;
+  color: $color-title;
+}
+
+.main-header__search {
+  display: flex;
+  grid-area: search;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  width: 32px;
+  height: 32px;
+  color: $color-title;
+}
+
+.main-header__actions {
+  display: flex;
+  grid-area: actions;
+  gap: 8px;
+  align-items: center;
+  justify-self: end;
+}
+
+.main-header__cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: $color-title;
+}
+
+.main-header__cart-count {
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-title;
+  border-radius: 50%;
+}
+
+.main-header__burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.main-header__burger-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.main-header__burger-line {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background-color: $color-title;
+}
+
+// Крестик закрытия появляется вместо линий, когда JS повесит --opened на бургер.
+.main-header__burger--opened .main-header__burger-lines {
+  display: none;
+}
+
+.main-header__burger--opened .main-header__burger-close {
+  display: block;
+}
+
+.main-header__burger-close {
+  display: none;
+}
+
+// Элементы, которых нет в мобильной шапке (их место — десктоп или мобильная панель).
+.main-header__usernav,
+.main-header__sell,
+.main-nav {
+  display: none;
+}
+
+// ============================================================
+// Десктоп (≥768px): две строки.
+//   строка 1: [usernav ............. логотип ............. sell]
+//   строка 2: [горизонтальное меню .............. поиск | корзина+бургер]
+// Обрати внимание: search и logo меняют только grid-area — разметка та же.
+// ============================================================
+
+@media (min-width: $tablet-width) {
+  .main-header__container {
+    // 5 колонок, в каждой строке одинаковое число ячеек (иначе свойство невалидно).
+    // Логотип и «Продать товар» НЕ в сетке: absolute-позиционированы по краям
+    // верхней строки (grid не может дать точный центр/правый край при колонках
+    // разной ширины в двух строках разного состава).
+    grid-template-areas:
+      "usernav . . . ."
+      "nav nav nav search actions";
+    grid-template-columns: minmax(0, 1fr) auto auto auto auto;
+    grid-template-rows: 40px auto; // верхняя строка 40px: y19..59, затем зазор 21px, nav на y80
+    grid-auto-rows: auto;
+    // Контент шапки — 1183px, поля 48px СНАРУЖИ (max-width включает паддинги).
+    max-width: $content-width + 96px;
+    gap: 21px 0; // воздух между строками; колоночных зазоров нет — их роль играют разделители
+    padding: 19px 48px 0;
+  }
+
+  .main-header__logo {
+    position: absolute;
+    top: 19px;
+    left: 50%;
+    grid-area: auto;
+    padding: 0;
+    transform: translateX(-50%);
+  }
+
+  .main-header__sell {
+    position: absolute;
+    top: 19px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 32px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-title;
+    border: 1px solid $color-border;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .main-header__usernav {
+    display: flex;
+    grid-area: usernav;
+    align-items: center;
+    justify-self: start;
+  }
+
+  .main-header__usernav-list {
+    display: flex;
+    gap: 24px;
+  }
+
+  .main-header__usernav-link {
+    font-size: 14px;
+    color: $color-title;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .main-nav {
+    display: block;
+    grid-area: nav;
+    align-self: stretch;
+  }
+
+  // На десктопе поиск и корзина — квадратные ячейки во всю высоту нижней строки,
+  // с разделителем слева (как ячейки меню).
+  .main-header__search,
+  .main-header__actions {
+    align-self: stretch;
+    width: 60px;
+    height: auto;
+    border-left: 1px solid $color-border;
+  }
+
+  .main-header__search {
+    justify-self: auto;
+  }
+
+  .main-header__actions {
+    gap: 0;
+    justify-self: auto;
+  }
+
+  .main-header__cart {
+    width: 60px;
+    height: 100%;
+  }
+
+  // Бургер на десктопе не нужен.
+  .main-header__burger {
+    display: none;
+  }
+}
+
+// На промежуточных ширинах (768–1182) контент шапки не прилипает к краям окна:
+// оставляем паддинги контейнера, а при ≥1183px контейнер центрируется сам
+// (max-width + margin: 0 auto из базовых стилей).
+
+@media (min-width: $tablet-width) and (max-width: $content-width - 1px) {
+  .main-header__container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

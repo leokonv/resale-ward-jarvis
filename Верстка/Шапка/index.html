@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resale Ward v2 — шапка</title>
+    <link href="styles/styles.css" rel="stylesheet">
+  </head>
+  <body class="page__body">
+
+    <header class="main-header">
+      <div class="main-header__container">
+
+        <!-- Навигация по аудиториям: видна только на десктопе (≥768px), на мобильной скрыта — её место занимают табы в мобильном меню. -->
+        <nav class="main-header__usernav" aria-label="Разделы для аудиторий">
+          <ul class="main-header__usernav-list">
+            <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Для нее</a></li>
+            <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Для него</a></li>
+            <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Для детей</a></li>
+            <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Блог</a></li>
+          </ul>
+        </nav>
+
+        <!-- Логотип ОДИН на все брейкпоинты: на десктопе стоит в верхней строке по центру, на мобильной — в единственной строке по центру. Позицию меняет grid-area, разметка не дублируется. -->
+        <a class="main-header__logo" href="index.html" aria-label="Resale Ward — на главную">
+          <picture>
+            <source media="(min-width: 768px)" srcset="img/logo-desktop.svg" width="253" height="90">
+            <img src="img/logo-mobile.svg" width="180" height="64" alt="Магазин Resale Ward">
+          </picture>
+        </a>
+
+        <a class="main-header__sell" href="#">Продать товар</a>
+
+        <!-- Основное горизонтальное меню: видно на десктопе, скрыто на мобильной (≤767px) — там его роль играет панель .main-nav--mobile. -->
+        <nav class="main-nav" aria-label="Каталог">
+          <ul class="main-nav__list">
+            <li class="main-nav__item"><a class="main-nav__link" href="#">НОВИНКИ</a></li>
+            <li class="main-nav__item"><a class="main-nav__link" href="#">БРЕНДЫ</a></li>
+            <li class="main-nav__item"><a class="main-nav__link" href="#">АКСЕССУАРЫ</a></li>
+            <li class="main-nav__item"><a class="main-nav__link" href="#">ОБУВЬ</a></li>
+            <li class="main-nav__item"><a class="main-nav__link" href="#">ОДЕЖДА</a></li>
+            <li class="main-nav__item"><a class="main-nav__link" href="#">СУМКИ</a></li>
+          </ul>
+        </nav>
+
+        <!-- Поиск и корзина — по одному экземпляру на всю страницу: на десктопе "переезжают" в правый край нижней строки (grid-area), на мобильной поиск уезжает влево. Бургер виден только на мобильной. -->
+        <button class="main-header__search" type="button" aria-label="Поиск">
+          <svg class="main-header__search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11.4" cy="10.1" r="7.75" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16.28 15.25 21.59 20.56" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </button>
+
+        <div class="main-header__actions">
+          <a class="main-header__cart" href="#" aria-label="Корзина">
+            <svg class="main-header__cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 21H4l1.3-12.2h13.4L20 21Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M9 9.8V7a3 3 0 0 1 6 0v2.8" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span class="main-header__cart-count">2</span>
+          </a>
+
+          <!-- Модификатор --opened (ставит JS) переключает иконку бургера на крестик закрытия. -->
+          <button class="main-header__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+            <span class="main-header__burger-lines">
+              <span class="main-header__burger-line"></span>
+              <span class="main-header__burger-line"></span>
+            </span>
+            <svg class="main-header__burger-close" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="m4.25 13-1.25-1.25L6.75 8 3 4.25 4.25 3 8 6.75 11.75 3 13 4.25 9.25 8 13 11.75 11.75 13 8 9.25 4.25 13Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Мобильное меню: отдельный блок (выезжает поверх контента). В разметке присутствует всегда, скрыт стилями; модификатор --opened на блоке добавляет JS при клике по бургеру. Мобильная панель — это НЕ дубль десктоп-меню, а отдельное содержимое (табы аудиторий + разделы), поэтому дублирование здесь оправдано. -->
+      <nav class="main-nav--mobile" aria-label="Мобильное меню">
+        <div class="main-nav--mobile__inner">
+          <p class="main-nav--mobile__audience-caption">Смотреть каталог для:</p>
+          <ul class="main-nav--mobile__tabs">
+            <li class="main-nav--mobile__tab"><a class="main-nav--mobile__tab-link main-nav--mobile__tab-link--active" href="#">Для нее</a></li>
+            <li class="main-nav--mobile__tab"><a class="main-nav--mobile__tab-link" href="#">Для него</a></li>
+            <li class="main-nav--mobile__tab"><a class="main-nav--mobile__tab-link" href="#">Для детей</a></li>
+          </ul>
+          <ul class="main-nav--mobile__list">
+            <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">НОВИНКИ</a></li>
+            <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">БРЕНДЫ</a></li>
+            <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">АКСЕССУАРЫ</a></li>
+            <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">ОБУВЬ</a></li>
+            <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">ОДЕЖДА</a></li>
+            <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">СУМКИ</a></li>
+          </ul>
+          <a class="main-nav--mobile__sell" href="#">Продать товар</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <!-- Заглушка вместо hero, чтобы было видно, как шапка ведёт себя над контентом. -->
+      <section class="demo-block" aria-hidden="true">
+        <p>Resale Ward v2 — здесь будет hero. Сузьте окно до 375px, чтобы увидеть мобильную шапку.</p>
+      </section>
+    </main>
+
+  </body>
+</html>
