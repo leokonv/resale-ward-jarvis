@@ -271,19 +271,15 @@
   }
 }
 
-// Сжатый диапазон (680–847): верхнее меню аудиторий и меню каталога
-// схлопываются в «кнопки» со стрелкой и выпадающим списком вниз.
+// Сжатый диапазон (680–847): верхнее меню аудиторий схлопывается — «Для него»/«Для детей»
+// скрываются из строки, у «Для нее» появляется стрелка-индикатор группы.
+// Выпадашка в разметке остаётся (откроется по клику, когда появится JS) и по hover не всплывает.
 @media (min-width: $tablet-width) and (max-width: $menu-full - 1px) {
   .main-header__usernav-item--collapsible {
     display: none;
   }
 
   .main-header__usernav-chevron {
-    display: block;
-  }
-
-  .main-header__usernav-item--dropdown:hover .main-header__usernav-dropdown,
-  .main-header__usernav-item--dropdown:focus-within .main-header__usernav-dropdown {
     display: block;
   }
 }

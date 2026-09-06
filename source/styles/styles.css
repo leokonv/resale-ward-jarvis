@@ -320,10 +320,6 @@ img {
   .main-header__usernav-chevron {
     display: block;
   }
-  .main-header__usernav-item--dropdown:hover .main-header__usernav-dropdown,
-  .main-header__usernav-item--dropdown:focus-within .main-header__usernav-dropdown {
-    display: block;
-  }
 }
 @media (min-width: 680px) and (max-width: 1182px) {
   .main-header__container {
