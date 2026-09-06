@@ -367,8 +367,15 @@ img {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-auto-rows: 24px;
-    column-gap: 4px;
+    column-gap: 0;
     row-gap: 0;
+  }
+  .main-nav__item {
+    border-left: 1px solid #e0deda;
+  }
+  .main-nav__item:first-child,
+  .main-nav__item:nth-child(6) {
+    border-left: none;
   }
   .main-nav__item--more {
     display: list-item;
@@ -389,6 +396,12 @@ img {
   }
 }
 @media (min-width: 848px) {
+  .main-nav__list {
+    gap: 0;
+  }
+  .main-nav__item:not(:first-child) {
+    border-left: 1px solid #e0deda;
+  }
   .main-nav__item--more {
     display: none;
   }

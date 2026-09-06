@@ -43,8 +43,18 @@
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-auto-rows: 24px; // та же высота строки, что у однострочного меню ≥848, — вертикальный ритм не меняется
-    column-gap: 4px;
+    column-gap: 0; // ячейки впритык — роль зазора играет разделитель
     row-gap: 0; // ряды прилегают вплотную (как в макете)
+  }
+
+  // Разделители между ячейками (как в макете): линия у каждой ячейки, кроме первой в ряду.
+  .main-nav__item {
+    border-left: 1px solid $color-border;
+  }
+
+  .main-nav__item:first-child,
+  .main-nav__item:nth-child(6) {
+    border-left: none; // НОВИНКИ и СУМКИ открывают свои ряды — линии слева нет
   }
 
   .main-nav__item--more {
@@ -71,8 +81,16 @@
   }
 }
 
-// Полное меню: «ЕЩЕ» не нужен, все пункты в одну строку.
+// Полное меню: «ЕЩЕ» не нужен, все пункты в одну строку с разделителями между ячейками.
 @media (min-width: $menu-full) {
+  .main-nav__list {
+    gap: 0; // ячейки впритык — роль зазора играет разделитель
+  }
+
+  .main-nav__item:not(:first-child) {
+    border-left: 1px solid $color-border;
+  }
+
   .main-nav__item--more {
     display: none;
   }
