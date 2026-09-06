@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Resale Ward v2 — шапка</title>
+    <title>Resale Ward</title>
+    <link href="fonts/GTWalsheimPro-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    <link href="fonts/Forum.woff2" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
     <link href="styles/styles.css" rel="stylesheet">
   </head>
   <body class="page__body">
-
     <header class="main-header">
       <div class="main-header__container">
 
         <!-- Навигация по аудиториям: видна только на десктопе (≥768px), на мобильной скрыта — её место занимают табы в мобильном меню. -->
         <nav class="main-header__usernav" aria-label="Разделы для аудиторий">
-          <ul class="main-header__usernav-list">
+          <ul class="main-header__usernav-list list-reset">
             <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Для нее</a></li>
             <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Для него</a></li>
             <li class="main-header__usernav-item"><a class="main-header__usernav-link" href="#">Для детей</a></li>
@@ -21,25 +22,37 @@
           </ul>
         </nav>
 
-        <!-- Логотип ОДИН на все брейкпоинты: на десктопе стоит в верхней строке по центру, на мобильной — в единственной строке по центру. Позицию меняет grid-area, разметка не дублируется. -->
+        <!-- Логотип ОДИН на все брейкпоинты: на десктопе стоит в верхней строке по центру, на мобильной — в единственной строке по центру.
+        Позицию меняет grid-area, разметка не дублируется. -->
         <a class="main-header__logo" href="index.html" aria-label="Resale Ward — на главную">
           <picture>
-            <source media="(min-width: 768px)" srcset="img/logo-desktop.svg" width="253" height="90">
-            <img src="img/logo-mobile.svg" width="180" height="64" alt="Магазин Resale Ward">
+            <source media="(min-width: 680px)" srcset="images/logo-desktop.svg" width="253" height="90">
+            <img src="images/logo-mobile.svg" width="180" height="64" alt="Магазин Resale Ward">
           </picture>
         </a>
 
         <a class="main-header__sell" href="#">Продать товар</a>
 
-        <!-- Основное горизонтальное меню: видно на десктопе, скрыто на мобильной (≤767px) — там его роль играет панель .main-nav--mobile. -->
+        <!-- Основное горизонтальное меню: на мобильной (≤679px) скрыто — там его роль играет панель .main-nav--mobile.
+             На 680–847 показывается сжатый состав: в строке НОВИНКИ/БРЕНДЫ/АКСЕССУАРЫ + «ЕЩЕ»,
+             «уехавшие» пункты (ОБУВЬ/ОДЕЖДА/СУМКИ) лежат в выпадашке «ЕЩЕ». С ≥848px — полное меню. -->
         <nav class="main-nav" aria-label="Каталог">
-          <ul class="main-nav__list">
+          <ul class="main-nav__list list-reset">
             <li class="main-nav__item"><a class="main-nav__link" href="#">НОВИНКИ</a></li>
             <li class="main-nav__item"><a class="main-nav__link" href="#">БРЕНДЫ</a></li>
             <li class="main-nav__item"><a class="main-nav__link" href="#">АКСЕССУАРЫ</a></li>
-            <li class="main-nav__item"><a class="main-nav__link" href="#">ОБУВЬ</a></li>
-            <li class="main-nav__item"><a class="main-nav__link" href="#">ОДЕЖДА</a></li>
-            <li class="main-nav__item"><a class="main-nav__link" href="#">СУМКИ</a></li>
+            <li class="main-nav__item main-nav__item--collapsible"><a class="main-nav__link" href="#">ОБУВЬ</a></li>
+            <li class="main-nav__item main-nav__item--collapsible"><a class="main-nav__link" href="#">ОДЕЖДА</a></li>
+            <li class="main-nav__item main-nav__item--collapsible"><a class="main-nav__link" href="#">СУМКИ</a></li>
+            <!-- «ЕЩЕ» виден только на 680–847; его выпадашка открывается по hover/focus-within (без JS). -->
+            <li class="main-nav__item main-nav__item--more">
+              <a class="main-nav__link" href="#">ЕЩЕ</a>
+              <ul class="main-nav__dropdown">
+                <li class="main-nav__dropdown-item"><a class="main-nav__dropdown-link" href="#">ОБУВЬ</a></li>
+                <li class="main-nav__dropdown-item"><a class="main-nav__dropdown-link" href="#">ОДЕЖДА</a></li>
+                <li class="main-nav__dropdown-item"><a class="main-nav__dropdown-link" href="#">СУМКИ</a></li>
+              </ul>
+            </li>
           </ul>
         </nav>
 
@@ -78,12 +91,12 @@
       <nav class="main-nav--mobile" aria-label="Мобильное меню">
         <div class="main-nav--mobile__inner">
           <p class="main-nav--mobile__audience-caption">Смотреть каталог для:</p>
-          <ul class="main-nav--mobile__tabs">
+          <ul class="main-nav--mobile__tabs list-reset">
             <li class="main-nav--mobile__tab"><a class="main-nav--mobile__tab-link main-nav--mobile__tab-link--active" href="#">Для нее</a></li>
             <li class="main-nav--mobile__tab"><a class="main-nav--mobile__tab-link" href="#">Для него</a></li>
             <li class="main-nav--mobile__tab"><a class="main-nav--mobile__tab-link" href="#">Для детей</a></li>
           </ul>
-          <ul class="main-nav--mobile__list">
+          <ul class="main-nav--mobile__list list-reset">
             <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">НОВИНКИ</a></li>
             <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">БРЕНДЫ</a></li>
             <li class="main-nav--mobile__item"><a class="main-nav--mobile__link" href="#">АКСЕССУАРЫ</a></li>
@@ -96,12 +109,8 @@
       </nav>
     </header>
 
-    <main class="main-content">
-      <!-- Заглушка вместо hero, чтобы было видно, как шапка ведёт себя над контентом. -->
-      <section class="demo-block" aria-hidden="true">
-        <p>Resale Ward v2 — здесь будет hero. Сузьте окно до 375px, чтобы увидеть мобильную шапку.</p>
-      </section>
-    </main>
+    <main>
 
+    </main>
   </body>
 </html>

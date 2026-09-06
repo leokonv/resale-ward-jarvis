@@ -1,5 +1,4 @@
 // ============ Горизонтальное меню (десктоп) ============
-
 .main-nav__list {
   display: flex;
   gap: 4px;
@@ -20,6 +19,65 @@
 
   &:hover {
     opacity: 0.5;
+  }
+}
+
+// ============ Сжатое меню: пункт «ЕЩЕ» с выпадашкой (680–847px) ============
+// В строке на этих ширинах остаются НОВИНКИ/БРЕНДЫ/АКСЕССУАРЫ + «ЕЩЕ»;
+// ОБУВЬ/ОДЕЖДА/СУМКИ (--collapsible) прячутся из строки, их копии живут в выпадашке.
+
+.main-nav__item--more {
+  position: relative;
+  display: none;
+}
+
+// Выпадашка открывается по hover/focus-within — чистый CSS, без JS.
+.main-nav__item--more:hover .main-nav__dropdown,
+.main-nav__item--more:focus-within .main-nav__dropdown {
+  display: block;
+}
+
+.main-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  display: none;
+  min-width: 220px;
+  padding: 12px 0;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+}
+
+.main-nav__dropdown-link {
+  display: block;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: $color-title;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+// Сжатый диапазон: «ЕЩЕ» виден, «уехавшие» пункты скрыты из строки.
+@media (min-width: $tablet-width) and (max-width: $menu-full - 1px) {
+  .main-nav__item--more {
+    display: list-item;
+  }
+
+  .main-nav__item--collapsible {
+    display: none;
+  }
+}
+
+// Полное меню: «ЕЩЕ» не нужен.
+@media (min-width: $menu-full) {
+  .main-nav__item--more {
+    display: none;
   }
 }
 

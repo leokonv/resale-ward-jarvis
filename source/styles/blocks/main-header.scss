@@ -149,10 +149,13 @@
 
   .main-header__logo {
     position: absolute;
-    top: 19px;
+    top: 0;
     left: 50%;
     grid-area: auto;
     padding: 0;
+    // Буквы лого в svg сидят ниже середины файла (253×90, верх — волна),
+    // поэтому svg приподнят: буквы встают на ось верхней строки меню.
+    margin-top: -8px;
     transform: translateX(-50%);
   }
 

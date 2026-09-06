@@ -1,5 +1,4 @@
-// ============ Глобальные стили (сброс + база) ============
-
+/* здесь используйте глобальные селекторы img, body, html и так далее */
 *,
 *::before,
 *::after {
@@ -51,16 +50,4 @@ img {
   overflow: hidden;
   clip: rect(0 0 0 0);
   border: 0;
-}
-
-// Заглушка под шапку (в проекте заменится на hero-блок).
-.demo-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  padding: 20px;
-  text-align: center;
-  color: $color-white;
-  background-color: $color-title;
 }

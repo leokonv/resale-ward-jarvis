@@ -1,3 +1,43 @@
+@charset "UTF-8";
+/* GLOBAL */
+/* здесь используйте глобальные переменные */
+/* здесь подключите шрифты */
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../fonts/GTWalsheimPro-Regular.woff2") format("woff2"), url("../../fonts/GTWalsheimPro-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../fonts/GTWalsheimPro-Medium.woff2") format("woff2"), url("../../fonts/GTWalsheimPro-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../fonts/GTWalsheimPro-Bold.woff2") format("woff2"), url("../../fonts/GTWalsheimPro-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Forum";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../fonts/Forum.woff2") format("woff2"), url("../../fonts/Forum.woff") format("woff");
+}
+@font-face {
+  font-family: "rouble";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../fonts/rouble.woff2") format("woff2"), url("../../fonts/rouble.woff") format("woff");
+}
+/* здесь используйте глобальные селекторы img, body, html и так далее */
 *,
 *::before,
 *::after {
@@ -51,17 +91,7 @@ img {
   border: 0;
 }
 
-.demo-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  padding: 20px;
-  text-align: center;
-  color: #ffffff;
-  background-color: #474442;
-}
-
+/* BLOCKS */
 .main-header {
   position: relative;
   z-index: 100;
@@ -171,7 +201,7 @@ img {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 680px) {
   .main-header__container {
     grid-template-areas: "usernav . . . ." "nav nav nav search actions";
     grid-template-columns: minmax(0, 1fr) auto auto auto auto;
@@ -183,10 +213,11 @@ img {
   }
   .main-header__logo {
     position: absolute;
-    top: 19px;
+    top: 0;
     left: 50%;
     grid-area: auto;
     padding: 0;
+    margin-top: -8px;
     transform: translateX(-50%);
   }
   .main-header__sell {
@@ -249,7 +280,7 @@ img {
     display: none;
   }
 }
-@media (min-width: 768px) and (max-width: 1182px) {
+@media (min-width: 680px) and (max-width: 1182px) {
   .main-header__container {
     padding-right: 20px;
     padding-left: 20px;
@@ -277,6 +308,54 @@ img {
   opacity: 0.5;
 }
 
+.main-nav__item--more {
+  position: relative;
+  display: none;
+}
+
+.main-nav__item--more:hover .main-nav__dropdown,
+.main-nav__item--more:focus-within .main-nav__dropdown {
+  display: block;
+}
+
+.main-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  display: none;
+  min-width: 220px;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border: 1px solid #e0deda;
+}
+
+.main-nav__dropdown-link {
+  display: block;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: #474442;
+}
+.main-nav__dropdown-link:hover {
+  opacity: 0.5;
+}
+
+@media (min-width: 680px) and (max-width: 847px) {
+  .main-nav__item--more {
+    display: list-item;
+  }
+  .main-nav__item--collapsible {
+    display: none;
+  }
+}
+@media (min-width: 848px) {
+  .main-nav__item--more {
+    display: none;
+  }
+}
 .main-nav--mobile {
   position: fixed;
   top: 64px;
@@ -357,8 +436,13 @@ img {
   opacity: 0.5;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 680px) {
   .main-nav--mobile {
     display: none;
   }
+}
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
