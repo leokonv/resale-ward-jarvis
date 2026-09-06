@@ -42,8 +42,9 @@
   .main-nav__list {
     display: grid;
     grid-template-columns: repeat(4, auto);
+    grid-auto-rows: 24px; // та же высота строки, что у однострочного меню ≥848, — вертикальный ритм не меняется
     column-gap: 4px;
-    row-gap: 0; // ряды меню прилегают вплотную (как в макете)
+    row-gap: 0; // ряды прилегают вплотную (как в макете)
   }
 
   .main-nav__item--more {

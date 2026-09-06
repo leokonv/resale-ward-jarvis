@@ -366,6 +366,7 @@ img {
   .main-nav__list {
     display: grid;
     grid-template-columns: repeat(4, auto);
+    grid-auto-rows: 24px;
     column-gap: 4px;
     row-gap: 0;
   }
