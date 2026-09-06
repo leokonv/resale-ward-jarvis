@@ -115,6 +115,40 @@
   display: none;
 }
 
+// Стрелка-шеврон у «Для нее»: скрыта по умолчанию, появляется только в сжатом
+// диапазоне (680–847), когда пункт становится дроп-кнопкой.
+.main-header__usernav-chevron {
+  display: none;
+}
+
+// Выпадашка «Для нее» (копии «Для него»/«Для детей» на 680–847).
+.main-header__usernav-item--dropdown {
+  position: relative;
+}
+
+.main-header__usernav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  display: none;
+  min-width: 180px;
+  padding: 12px 0;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+}
+
+.main-header__usernav-dropdown-link {
+  display: block;
+  padding: 8px 20px;
+  font-size: 14px;
+  color: $color-title;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
 // Элементы, которых нет в мобильной шапке (их место — десктоп или мобильная панель).
 .main-header__usernav,
 .main-header__sell,
@@ -190,6 +224,9 @@
   }
 
   .main-header__usernav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-size: 14px;
     color: $color-title;
 
@@ -231,6 +268,23 @@
   // Бургер на десктопе не нужен.
   .main-header__burger {
     display: none;
+  }
+}
+
+// Сжатый диапазон (680–847): верхнее меню аудиторий и меню каталога
+// схлопываются в «кнопки» со стрелкой и выпадающим списком вниз.
+@media (min-width: $tablet-width) and (max-width: $menu-full - 1px) {
+  .main-header__usernav-item--collapsible {
+    display: none;
+  }
+
+  .main-header__usernav-chevron {
+    display: block;
+  }
+
+  .main-header__usernav-item--dropdown:hover .main-header__usernav-dropdown,
+  .main-header__usernav-item--dropdown:focus-within .main-header__usernav-dropdown {
+    display: block;
   }
 }
 
